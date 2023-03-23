@@ -48,6 +48,10 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->register(\Illuminate\Database\Eloquent\LegacyFactoryServiceProvider::class
+);
+
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
