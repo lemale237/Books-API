@@ -48,7 +48,16 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
-$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class
+);
+
+
+$app->router->group([
+    'namespace' => 'App\Http\Controllers',
+], function ($router) {
+    require __DIR__.'/../routes/web.php';
+});
+
 
 /*
 |--------------------------------------------------------------------------
