@@ -23,9 +23,9 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+ $app->withFacades();
 
-// $app->withEloquent();
+ $app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +48,7 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
-$app->register(\Illuminate\Database\Eloquent\LegacyFactoryServiceProvider::class
-);
-
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
