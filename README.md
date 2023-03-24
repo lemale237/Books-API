@@ -10,18 +10,79 @@ This is a simple RESTful API service built with Laravel Lumen framework for mana
 ## Installation
 
 To get started, clone this repository and run the following commands:
-```cd Books-API
+```bash
+cd Books-API
 composer install
 cp .env.example .env
 php artisan key:generate
+```
 
-## Contributing
+Create a new database in MySQL and update the DB_DATABASE, DB_USERNAME and DB_PASSWORD variables in the .env file accordingly.
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Then, run the following command to create the tables in the database:
 
-## Security Vulnerabilities
+```bash
+php artisan migrate
+```
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+
+## Usage
+
+To run the service, run the following command:
+
+```bash
+php -S localhost:8000 -t public
+```
+
+
+You can then use an API client like Postman to make requests to the following endpoints:
+
+
+### Get all books
+```php
+GET /books
+```
+### Get a book by ID
+```php
+GET /books/{id}
+```
+### Create a new book
+```php
+POST /books/create
+```
+
+Body:
+
+```json
+{
+    "isbn": "978-3-16-148410-0",
+    "title": "Book Title",
+    "author": "Book Author",
+    "publication_date": "2022-01-01"
+}
+```
+
+### Update a book
+
+```php
+PUT /books/update/{id}
+```
+
+Body:
+
+```json
+{
+    "isbn": "978-3-16-148410-0",
+    "title": "New Book Title",
+    "author": "New Book Author",
+    "publication_date": "2022-01-01"
+}
+```
+###  Delete a book
+
+```php
+delete /books/delete/{id}
+```
 
 ## License
 
