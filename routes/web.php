@@ -18,9 +18,9 @@ use App\Http\Controllers\BookController;
 
 $router->get('/books', 'BookController@index');
 $router->get('/books/{id}', 'BookController@show');
-$router->post('/books/create', 'BookController@store');
-$router->put('/books/update/{id}', 'BookController@update');
-$router->delete('/books/delete/{id}', 'BookController@destroy');
+$router->post('/books', 'BookController@store');
+$router->put('/books/{id}', 'BookController@update');
+$router->delete('/books/{id}', 'BookController@destroy');
 
 
 

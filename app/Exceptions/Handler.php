@@ -1,9 +1,12 @@
 <?php
 
+
 namespace App\Exceptions;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -46,9 +49,31 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      *
      * @throws \Throwable
+     * 
      */
+    
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+        
+       // return parent::render($request, $exception);
+       if ($exception instanceof HttpException){
+            return response()->json([
+                'error' => $exception->getMessage(),
+                //'trace' => $exception->getTraceAsString(),
+            ], $exception->getCode());
+
+       }
+      if ($exception instanceof QueryException){
+        return response()->json([
+            'error' => $exception->getMessage(),
+           // 'trace' => $exception->getTraceAsString(),
+        ], status: Response::HTTP_INTERNAL_SERVER_ERROR);
+      }
+      
+      return response()->json([
+        'error' => $exception->getMessage(),
+        'file' => $exception->getFile(),
+        'line' => $exception->getLine(),
+      ], status: Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }

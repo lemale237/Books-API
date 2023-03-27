@@ -48,7 +48,7 @@ GET /books/{id}
 ```
 ### Create a new book
 ```php
-POST /books/create
+POST /books
 ```
 
 Body:
@@ -65,7 +65,7 @@ Body:
 ### Update a book
 
 ```php
-PUT /books/update/{id}
+PUT /books/{id}
 ```
 
 Body:
@@ -81,7 +81,7 @@ Body:
 ###  Delete a book
 
 ```php
-delete /books/delete/{id}
+delete /books/{id}
 ```
 
 ## License
