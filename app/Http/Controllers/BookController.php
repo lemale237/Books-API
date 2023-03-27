@@ -26,7 +26,7 @@ class BookController extends Controller
     $validator = Validator::make($request->all(), [
         'isbn' => 'required|unique:books|max:255',
         'title' => 'required|string|max:255',
-        'author' => 'required|string|max:255',
+        'author' => 'required|string|max:254',
         'publication_date' => 'nullable|date',
     ]);
 
